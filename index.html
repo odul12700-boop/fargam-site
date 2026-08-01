@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Fargam — Profil technique automatisation &amp; systèmes IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12151b;          /* charbon bleuté — acier qui refroidit */
+    --panel:#1a1f27;
+    --panel-2:#161a21;
+    --line:#2c333e;
+    --text:#e8e4da;        /* blanc chaud */
+    --muted:#9aa3ad;
+    --ember:#f0a13c;       /* braise — le geste, l'humain */
+    --ember-deep:#d97b26;
+    --teal:#5fcfbf;        /* signal — les systèmes, la donnée */
+    --notch:9px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    font-size:15px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:860px;margin:0 auto;padding:40px 28px 32px}
+
+  /* ---------- plaques (cartes à coins tronqués) ---------- */
+  .plate{
+    background:var(--panel);
+    border:1px solid var(--line);
+    clip-path:polygon(var(--notch) 0,100% 0,100% calc(100% - var(--notch)),calc(100% - var(--notch)) 100%,0 100%,0 var(--notch));
+    padding:18px 20px;
+  }
+
+  /* ---------- en-tête ---------- */
+  header{border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:26px}
+  .brand-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+  .brand{font-family:"Chakra Petch",sans-serif;font-weight:700;font-size:15px;letter-spacing:.28em;color:var(--ember)}
+  .brand small{display:block;font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:10.5px;letter-spacing:.06em;color:var(--muted);margin-top:3px;text-transform:none}
+  .contact{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);text-align:right;line-height:1.9}
+  .contact a{color:var(--teal);text-decoration:none;border-bottom:1px solid transparent}
+  .contact a:hover,.contact a:focus-visible{border-bottom-color:var(--teal)}
+  h1{
+    font-family:"Chakra Petch",sans-serif;font-weight:600;
+    font-size:clamp(26px,4.6vw,38px);line-height:1.12;
+    margin:20px 0 10px;letter-spacing:.01em;
+  }
+  h1 .nuit{color:var(--ember)}
+  .lede{color:var(--muted);max-width:640px;font-size:15.5px}
+  .lede strong{color:var(--text);font-weight:600}
+
+  /* ---------- libellés de section ---------- */
+  .stamp{
+    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ember);
+    display:flex;align-items:center;gap:12px;margin:30px 0 14px;
+  }
+  .stamp::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  /* ---------- offre ---------- */
+  .offer{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .offer .plate{padding:14px 16px}
+  .offer h3{font-family:"Chakra Petch",sans-serif;font-size:13.5px;font-weight:600;letter-spacing:.04em;margin-bottom:4px}
+  .offer p{font-size:13px;color:var(--muted)}
+
+  /* ---------- fiches systèmes ---------- */
+  .systems{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .sys{display:flex;flex-direction:column;gap:8px;background:var(--panel-2)}
+  .sys-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .sys h3{font-family:"Chakra Petch",sans-serif;font-size:15px;font-weight:600;letter-spacing:.03em}
+  .status{display:inline-flex;align-items:center;gap:6px;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;white-space:nowrap}
+  .lamp{width:7px;height:7px;border-radius:50%}
+  .status.prod{color:var(--teal)}
+  .status.prod .lamp{background:var(--teal);box-shadow:0 0 7px var(--teal);animation:pulse 2.6s ease-in-out infinite}
+  .status.build{color:var(--ember)}
+  .status.build .lamp{background:var(--ember);box-shadow:0 0 6px var(--ember)}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+  .sys p{font-size:13px;color:var(--muted)}
+  .sys .tech{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--teal);letter-spacing:.03em;margin-top:auto;padding-top:6px;border-top:1px dashed var(--line)}
+  .sys a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+  .sys a:hover,.sys a:focus-visible{border-bottom-color:var(--teal)}
+
+  /* ---------- stack ---------- */
+  .stack{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--text);
+    border:1px solid var(--line);background:var(--panel);
+    padding:5px 11px;
+    clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px);
+  }
+
+  /* ---------- méthode ---------- */
+  .method{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 22px}
+  .method li{list-style:none;font-size:13.5px;color:var(--muted);padding-left:18px;position:relative}
+  .method li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:2px;background:var(--ember)}
+  .method li strong{color:var(--text);font-weight:600}
+
+  /* ---------- pied ---------- */
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted)}
+  footer .cta{color:var(--ember)}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:640px){
+    .offer,.systems,.method{grid-template-columns:1fr}
+    .contact{text-align:left}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .status.prod .lamp{animation:none}
+  }
+
+  /* ---------- impression : plaque claire, encre économe ---------- */
+  @media print{
+    :root{--bg:#ffffff;--panel:#f4f2ee;--panel-2:#f4f2ee;--line:#c9c4bb;
+      --text:#1c1e22;--muted:#4d525a;--ember:#b35d10;--teal:#0e7d6f}
+    body{font-size:12.5px}
+    .page{padding:0;max-width:100%}
+    .status.prod .lamp,.status.build .lamp{box-shadow:none;animation:none}
+    a{color:inherit}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="brand-row">
+      <div class="brand">FARGAM<small>« nous forgeons » — occitan</small></div>
+      <div class="contact">
+        contact@feralsync.com<br>
+        <a href="https://github.com/odul12700-boop">github.com/odul12700-boop</a>
+      </div>
+    </div>
+    <h1>Le jour, j'automatise une forge aéronautique.<br><span class="nuit">La nuit, je forge des systèmes IA.</span></h1>
+    <p class="lede"><strong>Ludo — profil technique indépendant.</strong> J'exécute en marque blanche pour les agences IA et automatisation : vous vendez et gérez la relation client, je construis des systèmes fiables, documentés, qui tournent en production. Autodidacte, formé en construisant les miens.</p>
+  </header>
+
+  <div class="stamp">Ce que je livre aux agences</div>
+  <div class="offer">
+    <div class="plate">
+      <h3>Workflows n8n de production</h3>
+      <p>Automatisations déterministes, gestion d'erreurs, planification, quotas — pensées pour tourner sans surveillance.</p>
+    </div>
+    <div class="plate">
+      <h3>Intégrations IA &amp; API</h3>
+      <p>Claude API dans les nœuds, agents outillés, extraction et structuration de données, bots Telegram.</p>
+    </div>
+    <div class="plate">
+      <h3>Bases de données Supabase</h3>
+      <p>Schémas, fonctions PostgreSQL, cloud ou auto-hébergé Docker selon les contraintes de confidentialité.</p>
+    </div>
+    <div class="plate">
+      <h3>Dashboards &amp; remise carrée</h3>
+      <p>Interfaces de pilotage HTML/Chart.js, documentation de maintenance, passation propre à votre équipe.</p>
+    </div>
+  </div>
+
+  <div class="stamp">Systèmes forgés — preuves en production</div>
+  <div class="systems">
+    <div class="plate sys">
+      <div class="sys-head"><h3>Sentinelle Trading</h3><span class="status prod"><span class="lamp"></span>EN PROD</span></div>
+      <p>Système de trading crypto automatisé multi-agents, en paper trading. Agent d'analyse hebdomadaire (Claude, 17 outils), kill-switch de protection, notifications et commandes Telegram, dashboard temps réel. Des mois de production en continu, incidents diagnostiqués et durcis.</p>
+      <div class="tech">n8n · Supabase · Claude API · PostgreSQL · Telegram · Chart.js</div>
+    </div>
+    <div class="plate sys">
+      <div class="sys-head"><h3>Comptable IA</h3><span class="status prod"><span class="lamp"></span>EN PROD</span></div>
+      <p>Import et catégorisation automatique de relevés bancaires par IA, règles métier (exclusion des virements internes), traitement par lots. La comptabilité de ma micro-entreprise tourne dessus.</p>
+      <div class="tech">Python · Supabase · Claude API</div>
+    </div>
+    <div class="plate sys">
+      <div class="sys-head"><h3>FeralSync</h3><span class="status build"><span class="lamp"></span>EN VALIDATION</span></div>
+      <p>Application Android de routines et de suivi (33 fichiers Kotlin audités : notifications, alarmes, optimisation d'images), en cours de validation sur le Play Store. Site vitrine en ligne — <a href="https://feralsync.com">feralsync.com</a>, HTTPS, conformité RGPD et affiliation.</p>
+      <div class="tech">Kotlin · Android · Jekyll · GitHub Pages · DNS/HTTPS</div>
+    </div>
+    <div class="plate sys">
+      <div class="sys-head"><h3>Sirius</h3><span class="status build"><span class="lamp"></span>EN CONSTRUCTION</span></div>
+      <p>Assistant IA 100 % local : reconnaissance et synthèse vocales, LLM auto-hébergé, mémoire persistante — aucune donnée ne quitte la machine. Sauvegardes et réseau verrouillés en local.</p>
+      <div class="tech">Ollama · Whisper · Supabase Docker · Python</div>
+    </div>
+  </div>
+
+  <div class="stamp">Atelier — stack maîtrisée</div>
+  <div class="stack">
+    <span class="chip">n8n</span>
+    <span class="chip">Supabase / PostgreSQL</span>
+    <span class="chip">Claude API &amp; Claude Code</span>
+    <span class="chip">Python</span>
+    <span class="chip">Kotlin / Android</span>
+    <span class="chip">Bots Telegram</span>
+    <span class="chip">HTML / JS / Chart.js</span>
+    <span class="chip">Docker (auto-hébergement)</span>
+    <span class="chip">Jekyll / GitHub Pages</span>
+  </div>
+
+  <div class="stamp">Méthode d'atelier</div>
+  <ul class="method">
+    <li><strong>Fiabilité avant tout.</strong> Déterministe partout où la donnée l'exige ; l'agentique seulement là où elle est pertinente.</li>
+    <li><strong>Rien en prod sans validation.</strong> Tests sur artefacts réels, jamais de mise en production à l'aveugle.</li>
+    <li><strong>Documentation systématique.</strong> Chaque système est livré maintenable par quelqu'un d'autre que moi.</li>
+    <li><strong>Marque blanche par défaut.</strong> Votre client reste le vôtre ; communication écrite claire, réponses rapides.</li>
+  </ul>
+
+  <footer>
+    <span>Fargam — micro-entreprise · Aveyron, France · 100 % à distance</span>
+    <span class="cta">Un projet à délivrer ? contact@feralsync.com</span>
+  </footer>
+
+</div>
+</body>
+</html>
